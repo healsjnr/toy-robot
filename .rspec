@@ -1,0 +1,5 @@
+--color
+--tty
+--format progress
+--format RspecJunitFormatter --out spec/reports/rspec_results.xml
+--format html --out spec/reports/rspec_results.html

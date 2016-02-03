@@ -1,0 +1,13 @@
+tmp
+doc
+.yardoc
+.DS_store
+
+# IDE
+.idea
+*.iml
+*.log
+.bundle
+vendor/cache
+coverage
+spec/reports
