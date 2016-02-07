@@ -1,8 +1,20 @@
 require_relative 'heading'
 
+##
+# Robot Class
+# Represents a robot in a particular state.
+# Robots are immutable.
+# Executing an action on a robot returns an updated robot with the changes applied.
+#
 class Robot
   attr_reader :x, :y, :heading
 
+  ##
+  # Create a new robot
+  #   x - Int representing x location
+  #   y - Int representing y location
+  #   heading - Heading class representing the direction.
+  #
   def initialize(x, y, heading)
     @x = x
     @y = y
