@@ -1,12 +1,9 @@
 require 'spec_helper'
+require 'spec_data'
 require 'heading'
 
 describe "Heading" do
-  let(:north) { Heading.create(:north) }
-  let(:east) { Heading.create(:east) }
-  let(:south) { Heading.create(:south) }
-  let(:west) { Heading.create(:west) }
-
+  include_context "heading data"
   it { expect(north.left).to be west }
   it { expect(west.left).to be south }
   it { expect(south.left).to be east }

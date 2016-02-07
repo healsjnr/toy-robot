@@ -19,6 +19,10 @@ class Heading
   def left 
     rotate(-1)
   end
+  
+  def to_s
+    value.to_s.upcase
+  end
 
   private 
 

@@ -29,6 +29,10 @@ class Robot
     o.class == self.class && o.state == state
   end
 
+  def to_s
+    "#{x},#{y},#{heading.to_s}"
+  end
+
   protected
 
   def state

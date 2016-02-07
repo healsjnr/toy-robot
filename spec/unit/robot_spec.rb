@@ -1,8 +1,10 @@
 require 'spec_helper'
+require 'spec_data'
 require 'robot'
 require 'heading'
 
 describe "Robot" do
+  include_context "heading data"
   subject(:robot) { Robot.new(0, 0, north) }
   describe "methods" do 
     it { expect(robot).to respond_to(:move) }
@@ -12,11 +14,6 @@ describe "Robot" do
     it { expect(robot).to respond_to(:y) }
     it { expect(robot).to respond_to(:heading) }
   end
-
-  let(:north) { Heading.create(:north) }
-  let(:east) { Heading.create(:east) }
-  let(:south) { Heading.create(:south) }
-  let(:west) { Heading.create(:west) }
 
   describe "#new" do
     it { expect(Robot.new(0, 0, north)).to_not be nil }

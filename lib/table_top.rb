@@ -1,3 +1,0 @@
-class TableTop
-end
-
