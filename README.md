@@ -57,7 +57,7 @@ The current state of the robot is represented and manipulated by the ```Board```
 All methods except ```report``` return self so as to allow chaining. For example
 
     Board.new(5,5).place(0,0,:north).robot_move.robot_left.report
-    > “1,3,WEST”
+    > “0,1,WEST”
 
 ### Design Notes
 
