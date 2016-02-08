@@ -76,7 +76,7 @@ class Board
   # If robot position is valid after the move,
   # append to state and return self.
   #
-  def move_robot
+  def robot_move
     state_execute do |robot|
       robot.move
     end

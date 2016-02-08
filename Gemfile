@@ -5,5 +5,4 @@ group :test do
   gem 'pry'
   gem 'simplecov'
   gem 'rspec'
-  gem 'rspec_junit_formatter'
 end

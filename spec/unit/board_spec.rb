@@ -7,7 +7,7 @@ describe "Board" do
   subject(:board) { Board.new(5,5) }
   it { is_expected.to respond_to(:place) }
   it { is_expected.to respond_to(:report) }
-  it { is_expected.to respond_to(:move_robot) }
+  it { is_expected.to respond_to(:robot_move) }
   it { is_expected.to respond_to(:robot_left) }
   it { is_expected.to respond_to(:robot_right) }
   it { is_expected.to respond_to(:state) }
@@ -36,15 +36,15 @@ describe "Board" do
  
   describe "#move_robot" do
     it "should move the robot if it can" do
-      board.place(1,1,:north).move_robot
+      board.place(1,1,:north).robot_move
       expect(board.state).to eq Robot.new(1,2,north)
     end
     it "should have not effect if the robot cannot be moved" do
-      board.place(4,4,:north).move_robot
+      board.place(4,4,:north).robot_move
       expect(board.state).to eq Robot.new(4,4,north)
     end
     it "should have not effect if the robot has not been placed" do
-      board.move_robot
+      board.robot_move
       expect(board.state).to eq nil
     end
   end
@@ -70,11 +70,11 @@ describe "Board" do
       expect(board.report).to eq "1,1,NORTH"
     end
     it "should return position when the robot has been placed and moved" do
-      board.place(1,1,:north).move_robot
+      board.place(1,1,:north).robot_move
       expect(board.report).to eq "1,2,NORTH"
     end
     it "should return position when the robot has been placed, turned and moved" do
-      board.place(1,1,:north).robot_left.move_robot
+      board.place(1,1,:north).robot_left.robot_move
       expect(board.report).to eq "0,1,WEST"
     end
     it "should return a message when no robot has been placed" do
@@ -89,7 +89,7 @@ describe "Board" do
     #REPORT
     #Output: 0,1,NORTH
     it "should execute test 1 successfully" do
-      board.place(0,0,:north).move_robot
+      board.place(0,0,:north).robot_move
       expect(board.report).to eq "0,1,NORTH"
     end
 
@@ -113,10 +113,10 @@ describe "Board" do
     #Output: 3,3,NORTH
     it "should execute test 3 successfully" do
       board.place(1,2,:east)
-      board.move_robot
-      board.move_robot
+      board.robot_move
+      board.robot_move
       board.robot_left
-      board.move_robot
+      board.robot_move
       expect(board.report).to eq "3,3,NORTH"
     end
   end

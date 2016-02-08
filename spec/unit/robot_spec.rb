@@ -16,7 +16,13 @@ describe "Robot" do
   end
 
   describe "#new" do
-    it { expect(Robot.new(0, 0, north)).to_not be nil }
+    it { expect(robot).to_not be nil }
+    it { expect(robot.x).to be 0 }
+    it { expect(robot.y).to be 0 }
+    it { expect(robot.heading).to be north }
+    it "should fail if the heading is invalid" do
+      expect { Robot.new(0,0,nil) }.to raise_error(RobotInitializationError)
+    end
   end
 
   describe "#move" do

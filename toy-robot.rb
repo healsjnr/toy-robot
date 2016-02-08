@@ -16,7 +16,7 @@ def place(x,y,heading)
 end
 
 def move
-  @board.move_robot
+  @board.robot_move
 end
 
 def left

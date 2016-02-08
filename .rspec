@@ -1,5 +1,4 @@
 --color
 --tty
 --format documentation
---format RspecJunitFormatter --out spec/reports/rspec_results.xml
 --format html --out spec/reports/rspec_results.html

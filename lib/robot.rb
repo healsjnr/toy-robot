@@ -1,5 +1,11 @@
 require_relative 'heading'
 
+class RobotError < StandardError
+end
+
+class RobotInitializationError < RobotError
+end
+
 ##
 # Robot Class
 # Represents a robot in a particular state.
@@ -16,6 +22,7 @@ class Robot
   #   heading - Heading class representing the direction.
   #
   def initialize(x, y, heading)
+    raise RobotInitializationError, 'Heading cannot be nil' if heading.nil?
     @x = x
     @y = y
     @heading = heading
