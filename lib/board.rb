@@ -106,9 +106,9 @@ class Board
   #
   def state_execute
     robot = @state.first
-    if robot
+    if robot && block_given?
       updated_robot = yield robot
-      @state.unshift(updated_robot) if within_bounds(updated_robot.x, updated_robot.y)
+      @state.unshift(updated_robot) if !updated_robot.nil? && within_bounds(updated_robot.x, updated_robot.y)
     end
     self
   end
