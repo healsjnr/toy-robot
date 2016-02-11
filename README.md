@@ -31,7 +31,7 @@ A CLI is provided to allow ad-hoc testing of the toy-robot. The CLI is implement
 
     $ bundle exec ruby toy-robot.rb
 
-This launches a pry session with a (5x5) ```Board``` object setup. The commands available can be listed using the toy_robot_help function. 
+This launches a pry session with a (5x5) ```ToyRobotSimulator``` object setup. The commands available can be listed using the toy_robot_help function. 
     > place x, y, heading
       Places a robot on the board at the location specified.
       x – the x coordinate
@@ -52,21 +52,22 @@ This launches a pry session with a (5x5) ```Board``` object setup. The commands 
 
 ### Toy-Robot API
 
-The current state of the robot is represented and manipulated by the ```Board``` class. This class provides all the methods above (the CLI just proxies them through to an instance of ```Board```).
+The current state of the robot is represented and manipulated by the ```ToyRobotSimulator``` class. This class provides all the methods above (the CLI just proxies them through to an instance of ```ToyRobotSimulator```).
 
 All methods except ```report``` return self so as to allow chaining. For example
 
-    Board.new(5,5).place(0,0,:north).robot_move.robot_left.report
+    ToyRobotSimulator.new(5,5).place(0,0,:north).robot_move.robot_left.report
     > “0,1,WEST”
 
 ### Design Notes
 
 The key design decision to mention is that the ```Robot``` class is immutable. The ```Robot``` class represents the internal state of a robot (x,y and heading) as well as provides methods for "moving" the robot. However, these methods never alter the state and instead return a new instance of the robot. 
 
-State mutation is managed by the ```Board``` class and is implemented as a stack of ```Robot```s with the top robot being the current position.
+State mutation is managed by the ```ToyRobotSimulator``` class and is implemented as a stack of ```Robot```s with the top robot being the current position.
 
 This pattern allows the following:
 * A clear separation of responsibilities between the Board and Robot. The Robot knows its state and how to move; the Board knows that it has a robot and the bounds of the board.
-* The intersection of responsibility (the Robot being prevented from moving off the board) is implemented by moving the Robot and then checking if the new Robot is within the bounds of the Board. If so, the state is updated, otherwise the Robot is discarded.
+* The intersection of responsibility (the Robot being prevented from moving off the board) is handled by the ```ToyRobotSimulator```
+* It is implemented by moving the Robot and then checking if the new Robot is within the bounds of the Board. If so, the state is updated, otherwise the Robot is discarded.
 * By keeping previous states it becomes trivial to implement ```undo``` and ```replay``` functions. (TODO)
 
