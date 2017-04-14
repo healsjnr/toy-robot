@@ -17,10 +17,13 @@ class Board
 
   NO_ROBOT_PLACED = "No robot placed yet"
 
+  attr_reader :width, :height
+
   def initialize(width, height)
     @width = width
     @height = height
     @state = []
+    @holes = [{x: 0, y: 3}, {x: 2, y: 4}, {x: 4, y:0}, {x: 8, y: 7}, {x: 2, y: 8}]
   end
 
   ##
@@ -71,6 +74,12 @@ class Board
     end
   end
 
+  def robot_random
+    state_execute do |robot|
+      robot.random
+    end
+  end
+
   ##
   # Move the robot.
   # If robot position is valid after the move,
@@ -89,12 +98,22 @@ class Board
     @state.first
   end
 
-  private
   ##
   # Check the x,y locations is within the bounds of the board.
   #
   def within_bounds(x,y)
-    x >= 0 && x < @width && y >= 0 && y < @height
+    in_bounds = x >= 0 && x < @width && y >= 0 && y < @height
+    in_bounds && !in_a_hole?(x,y)
+  end
+
+  def is_robot?(x,y)
+    state.x == x && state.y == y
+  end
+
+  private
+
+  def in_a_hole?(x,y)
+    @holes.include?(x: x, y: y)
   end
 
   ##

@@ -31,6 +31,11 @@ def report
   @board.report
 end
 
+def random
+  @board.robot_random
+end
+
+
 def toy_robot_help
   puts "Place a robot:"
   puts "  > place x, y, 'north'|'south'|'east'|'west'"

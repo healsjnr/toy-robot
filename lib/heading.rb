@@ -44,6 +44,11 @@ class Heading
     value.to_s.upcase
   end
 
+  def random
+    other_headings = HEADINGS.values - [@value]
+    other_headings[Random.rand(other_headings.length)]
+  end
+
   private 
 
   ##

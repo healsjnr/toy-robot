@@ -37,6 +37,10 @@ class Robot
     Robot.new(@x, @y, @heading.right)
   end
 
+  def random
+    Robot.new(@x, @y, @heading.random)
+  end
+
   def move
     offset = @heading.direction
     new_x = @x + offset[:x]
