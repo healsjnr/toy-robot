@@ -1,34 +1,34 @@
-require './lib/board.rb'
+require './lib/toy_robot_simulator.rb'
 
 ##
-# Create a Board and provide proxy methods for Board class.
+# Create a Simulator and provide proxy methods for Simulator class.
 # This allows us to use pry as as CLI for driving the toy-robot.
 #
 
-@board = Board.new(5,5)
-def new_board(x,y)
-  @board = Board.new(x,y)
+@simulator = ToyRobotSimulator.new(5,5)
+def new_simulator(x,y)
+  @simulator = ToyRobotSimulator.new(x,y)
 end
 
 def place(x,y,heading)
   parsed_heading = (heading.is_a? Symbol) ? heading : heading.downcase.to_sym
-  @board.place(x,y,parsed_heading)
+  @simulator.place(x,y,parsed_heading)
 end
 
 def move
-  @board.robot_move
+  @simulator.robot_move
 end
 
 def left
-  @board.robot_left
+  @simulator.robot_left
 end
 
 def right
-  @board.robot_right
+  @simulator.robot_right
 end
 
 def report
-  @board.report
+  @simulator.report
 end
 
 def toy_robot_help
